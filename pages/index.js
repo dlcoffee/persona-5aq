@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { useState } from 'react'
 
+import Result from '../components/Result'
+
 export default function Index() {
   const [search, setSearch] = useState('')
   const [results, setResults] = useState([])
@@ -47,11 +49,13 @@ export default function Index() {
 
         <div>
           {results.length > 0 && (
-            <ul>
+            <ul style={{ margin: 0, padding: 0 }}>
               {results.map((result, index) => (
-                <li key={index}>
-                  {result.question} | {result.answer}
-                </li>
+                <Result
+                  key={index}
+                  question={result.question}
+                  answer={result.answer}
+                />
               ))}
             </ul>
           )}

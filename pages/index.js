@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import styles from '../styles/Index.module.css'
 
@@ -7,27 +7,31 @@ import Container from '../components/Container'
 import ResultList from '../components/ResultList'
 import Result from '../components/Result'
 import Input from '../components/Input'
+import useDebounce from '../useDebounce'
 
 export default function Index() {
   const [search, setSearch] = useState('')
+  const debouncedText = useDebounce(search, 250)
   const [results, setResults] = useState([])
+
+  useEffect(() => {
+    const runSearch = async () => {
+      const res = await fetch(`/api/search?input=${search}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'GET',
+      })
+
+      const response = await res.json()
+      setResults(response)
+    }
+
+    runSearch()
+  }, [debouncedText, setResults])
 
   const handleChange = (event) => {
     setSearch(event.target.value)
-  }
-
-  const runSearch = async (event) => {
-    event.preventDefault()
-
-    const res = await fetch(`/api/search?input=${search}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'GET',
-    })
-
-    const response = await res.json()
-    setResults(response)
   }
 
   return (
@@ -41,7 +45,7 @@ export default function Index() {
         <div className={styles.formContainer}>
           <h1>Persona 5AQ</h1>
 
-          <form onSubmit={runSearch}>
+          <form>
             {/* <label htmlFor="search">fuzzy search:</label> */}
 
             <Input
@@ -51,8 +55,6 @@ export default function Index() {
               value={search}
               onChange={handleChange}
             />
-
-            <button type="submit">Submit</button>
           </form>
         </div>
 

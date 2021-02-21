@@ -1,10 +1,14 @@
 .listItem {
-  list-style: none;
   background-color: black;
-  /* border: 5px solid white;
-  outline: 5px solid black; */
-  max-width: 600px;
-  color: white;
-  margin: 8px 0;
   box-shadow: 0 0 0 4px white, 0 0 0 8px black;
+  color: white;
+  list-style: none;
+  margin: 32px 0;
+  padding: 8px;
+}
+
+.listItem:hover {
+  background-color: white;
+  box-shadow: 0 0 0 4px white, 0 0 0 8px black;
+  color: black;
 }

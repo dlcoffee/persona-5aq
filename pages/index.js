@@ -1,7 +1,12 @@
 import Head from 'next/head'
 import { useState } from 'react'
 
+import styles from '../styles/Index.module.css'
+
+import Container from '../components/Container'
+import ResultList from '../components/ResultList'
 import Result from '../components/Result'
+import Input from '../components/Input'
 
 export default function Index() {
   const [search, setSearch] = useState('')
@@ -26,30 +31,34 @@ export default function Index() {
   }
 
   return (
-    <div>
+    <Container>
       <Head>
         <title>Persona 5AQ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <form onSubmit={runSearch}>
-          <label htmlFor="search">fuzzy search:</label>
+        <div className={styles.formContainer}>
+          <h1>Persona 5AQ</h1>
 
-          <input
-            type="text"
-            id="search"
-            name="search"
-            value={search}
-            onChange={handleChange}
-          />
+          <form onSubmit={runSearch}>
+            {/* <label htmlFor="search">fuzzy search:</label> */}
 
-          <input type="submit" value="submit" />
-        </form>
+            <Input
+              type="text"
+              id="search"
+              name="search"
+              value={search}
+              onChange={handleChange}
+            />
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
 
         <div>
           {results.length > 0 && (
-            <ul style={{ margin: 0, padding: 0 }}>
+            <ResultList>
               {results.map((result, index) => (
                 <Result
                   key={index}
@@ -57,12 +66,10 @@ export default function Index() {
                   answer={result.answer}
                 />
               ))}
-            </ul>
+            </ResultList>
           )}
         </div>
       </main>
-
-      <footer>footer</footer>
-    </div>
+    </Container>
   )
 }

@@ -43,7 +43,7 @@ export default function Index() {
 
       <main>
         <div className={styles.formContainer}>
-          <h1>Persona 5AQ</h1>
+          <h1 style={{ color: '#c30200', fontWeight: 'bold' }}>Persona 5AQ</h1>
 
           <form>
             {/* <label htmlFor="search">fuzzy search:</label> */}
@@ -52,6 +52,7 @@ export default function Index() {
               type="text"
               id="search"
               name="search"
+              placeholder="Search"
               value={search}
               onChange={handleChange}
             />

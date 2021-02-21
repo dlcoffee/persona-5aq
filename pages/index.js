@@ -65,6 +65,7 @@ export default function Index() {
               {results.map((result, index) => (
                 <Result
                   key={index}
+                  date={result.date}
                   question={result.question}
                   answer={result.answer}
                 />

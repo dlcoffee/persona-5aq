@@ -1,7 +1,49 @@
+.captionOuter {
+  border: 6px solid black;
+  margin: 8px 0;
+  transform: skew(10deg);
+  position: absolute;
+  top: -40px;
+  z-index: 1;
+}
+
+.captionInner {
+  background-color: white;
+  border: 4px solid white;
+  color: black;
+}
+
+.captionContent {
+  font-family: 'Arsenal';
+  font-weight: bold;
+  letter-spacing: 0.01rem;
+  padding: 4px 4px;
+  transform: skew(-10deg);
+}
+
+.dialogue {
+  position: relative;
+}
+
 .outer {
   border: 6px solid black;
   margin: 8px 0;
+}
+
+.speakerLeftSkew {
+  transform: skew(20deg);
+}
+
+.speakerLeftUnskew {
   transform: skew(-20deg);
+}
+
+.speakerRightSkew {
+  transform: skew(-20deg);
+}
+
+.speakerRightUnskew {
+  transform: skew(20deg);
 }
 
 .inner {
@@ -20,5 +62,4 @@
   font-weight: bold;
   letter-spacing: 0.01rem;
   padding: 16px 24px;
-  transform: skew(20deg);
 }
